@@ -20,16 +20,16 @@ int main(void)
         scanf("%d", &score[i][2]);
         score[i][3] = score[i][0] + score[i][1] + score[i][2];  /* 合計点数 */
         for (j = 4; 8 > j; j++) {
-            score[i][j] = 1;     /* 国,数,英,合計の全順位を1で初期化 */
+            score[i][j] = 0;     /* 国,数,英,合計の全順位を0で初期化 */
         }
     }
     
     /* 順位付け */
-    for (i = 0; STUDENT - 1 > i; i++) {
-        for (j = i + 1; STUDENT > j; j++) { /* 同点の場合 */
-            for (k = 0; 4 > k; k++) {   /* 国数英合計の各点数 */
-                if (score[i][k] < score[j][k]) {    /* 前後生徒の点数を比較 */
-                    score[i][k + 4] = score[i][k + 4] + 1;  /* 順位を1つ下げる */
+    for (i = 0; i < STUDENT; i++) {
+        for (k = 0; k < 4; k++) {
+            for (j = 0; j < STUDENT; j++) {
+                if (score[i][k] < score[j][k]) {
+                    score[i][k + 4] += 1;
                 }
             }
         }
